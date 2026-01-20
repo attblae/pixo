@@ -1,6 +1,7 @@
 * {
   padding: 0px;
   margin: 0px;
+  /* box-sizing: border-box; */
 }
 
 @font-face {
@@ -59,8 +60,7 @@ a {
 
 button {
     font-family: PoppinsBold;
-    font-size: 13px;
-    font-weight: bold;
+    font-size: 20px;
     color: white;
     background-color: #7452ff;
     border-radius: 50px;
@@ -156,4 +156,8 @@ button:hover {
   height: 200px;
   background-color: rgb(6, 0, 41);
   color: #e8e4ff;
+}
+
+img {
+  width: 100%;
 }
