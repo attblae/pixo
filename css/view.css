@@ -1,0 +1,159 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
+@font-face {
+  font-family: Poppins;
+  src: url(../fonts/Poppins-Light.woff);
+}
+@font-face {
+  font-family: PoppinsBold;
+  src: url(../fonts/Poppins-Bold.woff);
+}
+@font-face {
+  font-family: Josefin;
+  src: url(../fonts/JosefinSans-SemiBold.woff);
+}
+@font-face {
+  font-family: JosefinBold;
+  src: url(../fonts/JosefinSans-Bold.woff);
+}
+@font-face {
+  font-family: PoppinsRegular;
+  src: url(../fonts/Poppins-Regular.woff);
+}
+
+
+h1 {
+    font-family: PoppinsBold;
+    font-size: 45px;
+    color: white
+}
+
+h2 {
+    font-family: PoppinsRegular;
+    font-size: 30px;
+    color: white
+}
+h3 {
+    font-family: PoppinsBold;
+    font-size: 20px;
+    color: white
+}
+
+pre {
+    font-family: Poppins;
+    color: white
+}
+
+p {
+    font-family: Poppins;
+    color: white
+}
+
+a {
+    font-family: Poppins;
+    color: white
+}
+
+button {
+    font-family: PoppinsBold;
+    font-size: 13px;
+    font-weight: bold;
+    color: white;
+    background-color: #7452ff;
+    border-radius: 50px;
+    border: 2px solid #7452ff;
+    cursor: pointer;
+    padding: 20px 40px
+}
+button:hover {
+  background-color: #e8e4ff;
+  color: black;
+  border: 2px solid #e8e4ff;
+}
+
+/* NEW */
+.flexbox {
+  position: relative;
+  z-index: 2;
+  margin-top: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 8px;
+  /* align-items: center; */
+  align-content: center;
+  padding-bottom: 16px;
+}
+
+.title {
+ font-family: PoppinsBold;
+ font-size: 45px;
+ color: white;
+ text-decoration: none;
+}
+
+.inp {
+  position: relative;
+  border-radius: 10px;
+  border-style: none;
+  height: 40px;
+  padding: auto;
+  width:400px;
+  z-index: 2;
+  padding: 5px 10px;
+  font-size: 18px;
+}
+
+.inp::placeholder{
+  font-size: 18px;
+}
+
+
+.confirm {
+  width: 100%;
+  border-radius: 10px;
+  height: 50px;
+}
+
+.back {
+  background-color: #04001b;
+}
+
+.headder {
+  width: 100%;
+  position: fixed;
+  z-index: 4;
+}
+
+.logo {
+  color: white;
+  padding: 0px 10px;
+  float: left;
+}
+
+.more {
+  color: white;
+  padding: 0px 10px;
+  float: right;
+  font-size: 20px;
+}
+
+.body {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  /* background-color: red; */
+}
+
+.footer {
+  height: 200px;
+  background-color: rgb(6, 0, 41);
+  color: #e8e4ff;
+}
