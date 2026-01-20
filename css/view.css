@@ -1,7 +1,7 @@
 * {
   padding: 0px;
   margin: 0px;
-  /* box-sizing: border-box; */
+  box-sizing: border-box;
 }
 
 @font-face {
@@ -119,13 +119,18 @@ button:hover {
 }
 
 .back {
+  position: relative;
   background-color: #04001b;
+  width: 100%;
+  min-height: 960px;
+  overflow: hidden;
 }
 
 .headder {
   width: 100%;
   position: fixed;
   z-index: 4;
+  padding: 0 20px;
 }
 
 .logo {
@@ -135,10 +140,9 @@ button:hover {
 }
 
 .more {
-  color: white;
-  padding: 0px 10px;
   float: right;
-  font-size: 20px;
+  margin-right: 1%;
+  font-size: 19px;
 }
 
 .body {
@@ -152,6 +156,17 @@ button:hover {
   /* background-color: red; */
 }
 
+.content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  height: 860px;
+  z-index: 2;
+  left: 10%;
+}
+
 .footer {
   height: 200px;
   background-color: rgb(6, 0, 41);
@@ -160,4 +175,14 @@ button:hover {
 
 img {
   width: 100%;
+}
+
+.text { 
+  position: relative;
+  z-index: 2;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  justify-content: space-between;
 }
