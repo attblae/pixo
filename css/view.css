@@ -118,6 +118,10 @@ button:hover {
 }
 
 .headder {
+<<<<<<< HEAD
+=======
+  
+>>>>>>> baa0c8c3a4c9f5982ac5b2975be855595520eded
 }
 
 .logo {
@@ -153,6 +157,7 @@ button:hover {
 }
 
 .content {
+<<<<<<< HEAD
   position: relative;
   display: flex;
   flex-direction: column;
@@ -160,6 +165,10 @@ button:hover {
   overflow: hidden;
   height: 860px;
   z-index: 2;
+=======
+  margin-left: 10%;
+  margin-right: 40%;
+>>>>>>> baa0c8c3a4c9f5982ac5b2975be855595520eded
 }
 
 .footer {
