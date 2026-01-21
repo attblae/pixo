@@ -117,32 +117,40 @@ button:hover {
   overflow: hidden;
 }
 
+/* Обновленные стили для хэдера */
 .headder {
-<<<<<<< HEAD
-=======
-  
->>>>>>> baa0c8c3a4c9f5982ac5b2975be855595520eded
+  width: 97%;
+  position: fixed;
+  z-index: 4;
+  display: flex; /* Превращаем в flex-контейнер */
+  align-items: center; /* Вертикальное выравнивание по центру */
+  justify-content: space-between; /* Распределение пространства */
+  padding: 0 20px; /* Добавляем отступы по бокам */
+  height: 100px; /* Фиксированная высота для хэдера */
 }
 
 .logo {
-  float: left;
+  max-width: 100px;
+  /* Удаляем float: left */
+  color: black; /* Чтобы текст был виден на зеленом фоне */
 }
 
 .icon {
-  float: right;
-  margin-right: 1%;
-  position: relative;
-  float: right;
+  /* Удаляем float: right */
   max-width: 60px;
-  margin-top: 15px;
 }
 
 .more {
-  position: relative;
-  z-index: 2;
-  float: right;
-  margin-right: 1%;
+  /* Удаляем float: right и высоту 100px */
+  margin: 0 10px; /* Отступы между ссылками */
   font-size: 19px;
+  text-decoration: none; /* Убираем подчеркивание у ссылок */
+}
+
+
+.headder-links {
+  display: flex;
+  align-items: center;
 }
 
 .body {
@@ -157,18 +165,8 @@ button:hover {
 }
 
 .content {
-<<<<<<< HEAD
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  overflow: hidden;
-  height: 860px;
-  z-index: 2;
-=======
   margin-left: 10%;
   margin-right: 40%;
->>>>>>> baa0c8c3a4c9f5982ac5b2975be855595520eded
 }
 
 .footer {
