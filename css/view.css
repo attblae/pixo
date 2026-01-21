@@ -25,31 +25,8 @@
   font-family: PoppinsRegular;
   src: url(../fonts/Poppins-Regular.woff);
 }
-/* шрифты */
 
-h1 {
-    font-family: PoppinsBold;
-    font-size: 45px;
-    color: white
-}
-
-h2 {
-    font-family: PoppinsRegular;
-    font-size: 30px;
-    color: white
-}
-
-p {
-    font-family: Poppins;
-    color: white
-}
-
-a {
-    font-family: Poppins;
-    color: white
-}
-
-
+/* кнопка */
 button {
     font-family: PoppinsBold;
     font-size: 20px;
@@ -60,121 +37,9 @@ button {
     cursor: pointer;
     padding: 20px 40px
 }
+
 button:hover {
   background-color: #e8e4ff;
   color: black;
   border: 2px solid #e8e4ff;
-}
-
-.flexbox {
-  position: relative;
-  z-index: 2;
-  margin-top: 10%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 8px;
-  /* align-items: center; */
-  align-content: center;
-  padding-bottom: 16px;
-}
-
-.title {
- font-family: PoppinsBold;
- font-size: 45px;
- color: white;
- text-decoration: none;
-}
-
-.inp {
-  position: relative;
-  border-radius: 10px;
-  border-style: none;
-  height: 40px;
-  padding: auto;
-  width:400px;
-  z-index: 2;
-  padding: 5px 10px;
-  font-size: 18px;
-}
-
-.inp::placeholder{
-  font-size: 18px;
-}
-
-
-.confirm {
-  width: 100%;
-  border-radius: 10px;
-  height: 50px;
-}
-
-.back {
-  position: relative;
-  background-color: #04001b;
-  width: 100%;
-  min-height: 960px;
-  overflow: hidden;
-}
-
-/* Обновленные стили для хэдера */
-.headder {
-  width: 97%;
-  position: fixed;
-  z-index: 4;
-  display: flex; /* Превращаем в flex-контейнер */
-  align-items: center; /* Вертикальное выравнивание по центру */
-  justify-content: space-between; /* Распределение пространства */
-  padding: 0 20px; /* Добавляем отступы по бокам */
-  height: 100px; /* Фиксированная высота для хэдера */
-}
-
-.logo {
-  max-width: 100px;
-  /* Удаляем float: left */
-  color: black; /* Чтобы текст был виден на зеленом фоне */
-}
-
-.icon {
-  /* Удаляем float: right */
-  max-width: 60px;
-}
-
-.more {
-  /* Удаляем float: right и высоту 100px */
-  margin: 0 10px; /* Отступы между ссылками */
-  font-size: 19px;
-  text-decoration: none; /* Убираем подчеркивание у ссылок */
-}
-
-
-.headder-links {
-  display: flex;
-  align-items: center;
-}
-
-.body {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  /* background-color: red; */
-}
-
-.content {
-  margin-left: 10%;
-  margin-right: 40%;
-}
-
-.footer {
-  height: 200px;
-  background-color: rgb(6, 0, 41);
-  color: #e8e4ff;
-}
-
-img {
-  width: 100%;
 }
