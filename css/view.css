@@ -118,7 +118,7 @@ button:hover {
 }
 
 .headder {
-
+  
 }
 
 .logo {
@@ -143,14 +143,8 @@ button:hover {
 }
 
 .content {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  overflow: hidden;
-  height: 860px;
-  z-index: 2;
-  left: 10%;
+  margin-left: 10%;
+  margin-right: 40%;
 }
 
 .footer {
