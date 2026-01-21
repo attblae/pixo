@@ -118,14 +118,24 @@ button:hover {
 }
 
 .headder {
-
 }
 
 .logo {
   float: left;
 }
 
+.icon {
+  float: right;
+  margin-right: 1%;
+  position: relative;
+  float: right;
+  max-width: 60px;
+  margin-top: 15px;
+}
+
 .more {
+  position: relative;
+  z-index: 2;
   float: right;
   margin-right: 1%;
   font-size: 19px;
@@ -150,7 +160,6 @@ button:hover {
   overflow: hidden;
   height: 860px;
   z-index: 2;
-  left: 10%;
 }
 
 .footer {
