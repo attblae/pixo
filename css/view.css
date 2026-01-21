@@ -1,9 +1,10 @@
 * {
   padding: 0px;
   margin: 0px;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
 }
 
+/* шрифты */
 @font-face {
   font-family: Poppins;
   src: url(../fonts/Poppins-Light.woff);
@@ -24,7 +25,7 @@
   font-family: PoppinsRegular;
   src: url(../fonts/Poppins-Regular.woff);
 }
-
+/* шрифты */
 
 h1 {
     font-family: PoppinsBold;
@@ -37,17 +38,6 @@ h2 {
     font-size: 30px;
     color: white
 }
-h3 {
-    font-family: PoppinsBold;
-    font-size: 20px;
-    color: white;
-    margin-bottom: 1%;
-}
-
-pre {
-    font-family: Poppins;
-    color: white
-}
 
 p {
     font-family: Poppins;
@@ -58,6 +48,7 @@ a {
     font-family: Poppins;
     color: white
 }
+
 
 button {
     font-family: PoppinsBold;
@@ -75,7 +66,6 @@ button:hover {
   border: 2px solid #e8e4ff;
 }
 
-/* NEW */
 .flexbox {
   position: relative;
   z-index: 2;
@@ -130,16 +120,14 @@ button:hover {
 .headder {
   position: relative;
   z-index: 2;
-  height: 100px;
-  display: flex;
+  height: 71px;
+  /* display: flex; */
   align-items: center;
-  padding: 0 20px;
-  justify-content: space-between;
+  /* padding: 0 0px;
+  background-color: red; */ */
 }
 
 .logo {
-  color: white;
-  padding: 0px 10px;
   float: left;
 }
 
