@@ -49,8 +49,10 @@ button:hover {
 }
 
 .background {
+  position: relative;
   background-color: #04001b;
   height: 100vh;
+  overflow: hidden;
 }
 
 .header {
@@ -58,9 +60,8 @@ button:hover {
     justify-content: space-between; /* Разделяет элементы по краям */
     align-items: center; /* Выравнивает по вертикали */
     padding: 10px 20px;
-    z-index: 1;
+    /* z-index: 2; */
 }
-
 
 .right-part {
     display: flex;
@@ -93,7 +94,21 @@ a:hover {
 }
 
 .body {
-  padding: 17% 40% 0% 10%;
+  padding: 17% 40% 0% 25%;
+}
+
+.footer {
+     background: linear-gradient(to bottom,
+    #04001b 0%,
+    #0a013a 25%,
+    #100551 50%,
+    #211279 75%,
+    #5535bc 100%);
+  height: 250px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
 }
 
 h1 {
@@ -111,4 +126,9 @@ p {
 
 h1, h2, p, a {
   color: white;
+}
+
+h1, h2, p, a, .icon, .logo {
+  position: relative;
+  z-index: 2;
 }
