@@ -47,6 +47,7 @@ button:hover {
   background-color: #e8e4ff;
   color: black;
   border: 2px solid #e8e4ff;
+  box-shadow: 0 0 20px #9378fd;
 }
 
 .background {
@@ -66,7 +67,7 @@ button:hover {
 
 .right-part {
     display: flex;
-    gap: 10px; /* Расстояние между элементами 2,3,4,5 */
+    gap: 20px; /* Расстояние между элементами 2,3,4,5 */
     align-items: center;
 }
 
@@ -88,10 +89,11 @@ a {
   font-family: PoppinsRegular;
   text-decoration: none;
   font-size: 20px;
+  transition-duration: 0.4s;
 }
 
 a:hover {
-  text-decoration:underline ;
+  transform: scale(1.1);
 }
 
 .body {
@@ -132,4 +134,37 @@ h1, h2, p, a {
 h1, h2, p, a, .icon, .logo {
   position: relative;
   z-index: 2;
+}
+
+.body_input {
+  display: flex;
+  height: 100vh;
+  /* background-color: red; */
+
+  justify-content: center; /* вертикаль */
+  align-items: center;     /* горизонталь */
+
+  flex-direction: column;
+  gap: 10px;
+}
+
+.inp {
+  font-family: PoppinsRegular;
+  width: 300px;
+  font-size: 20px;
+  padding: 10px 15px;
+  border-style: none;
+  border-radius: 10px;
+  transition-duration: 0.4s;
+}
+.inp:active, .inp:focus{
+  box-shadow: 0 0 20px #9378fd;
+}
+
+.inp:active, .inp:focus {
+  outline: none;
+}
+
+inp::placeholder {
+  font-family: PoppinsRegular;
 }
