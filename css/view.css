@@ -93,11 +93,11 @@ a {
 }
 
 a:hover {
-  transform: scale(1.1);
+  text-decoration: underline;
 }
 
 .body {
-  padding: 17% 40% 0% 25%;
+  padding: 14% 40% 0% 25%;
 }
 
 .footer {
