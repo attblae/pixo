@@ -58,11 +58,15 @@ button:hover {
 }
 
 .header {
+    position: relative;
+    z-index: 2;
     display: flex;
     justify-content: space-between; /* Разделяет элементы по краям */
     align-items: center; /* Выравнивает по вертикали */
     padding: 10px 20px;
     /* z-index: 2; */
+    opacity: 0;
+    animation: fadeIn 1s forwards;
 }
 
 .right-part {
@@ -97,21 +101,35 @@ a:hover {
 }
 
 .body {
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+  position: relative;
+  z-index: 2;
   padding: 14% 40% 0% 25%;
 }
 
 .footer {
-     background: linear-gradient(to bottom,
-    #04001b 0%,
-    #0a013a 25%,
-    #100551 50%,
-    #211279 75%,
-    #5535bc 100%);
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(to bottom,
+  #04001b 0%,
+  #0a013a 25%,
+  #180551 50%,
+  #3a1279 75%,
+  #6935bc 100%);
   height: 250px;
   display: flex;
+  justify-content: center;
   align-items: center;
-  text-align: center;
+  /* padding: 0% 5% 0% 5%; */
+  gap: 20px;
+}
 
+.footer_text {
+  display: flex;
+  gap: 20px;
+  opacity: 0;
+  animation: fadeIn 1s forwards;
 }
 
 h1 {
@@ -122,12 +140,12 @@ h2 {
   font-family: Poppins;
   font-size: 35px;
 }
-p {
+p, li {
   font-family: PoppinsRegular;
   font-size: 20px;
 }
 
-h1, h2, p, a {
+h1, h2, p, a, li, ol, ul {
   color: white;
 }
 
@@ -136,17 +154,29 @@ h1, h2, p, a, .icon, .logo {
   z-index: 2;
 }
 
+.body_text {
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+  position: relative;
+  z-index: 2;
+  padding: 6% 13% 0% 15%;
+}
+
 .body_input {
+  position: relative;
+  z-index: 2;
   display: flex;
   height: 100vh;
+  padding: 10% 0% 0% 0%;
   /* background-color: red; */
-
-  justify-content: center; /* вертикаль */
+  /* justify-content: center; вертикаль */
   align-items: center;     /* горизонталь */
-
   flex-direction: column;
   gap: 10px;
+  opacity: 0;
+  animation: fadeIn 1s forwards;
 }
+
 
 .inp {
   font-family: PoppinsRegular;
@@ -167,4 +197,15 @@ h1, h2, p, a, .icon, .logo {
 
 inp::placeholder {
   font-family: PoppinsRegular;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10%)
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
