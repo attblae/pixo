@@ -4,7 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cd9e0aa6-97e7-46d4-9b0b-a4d7f553b20c" name="Changes" comment="" />
+    <list default="true" id="cd9e0aa6-97e7-46d4-9b0b-a4d7f553b20c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/about_us.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/about_us.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/catalog.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/catalog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/create.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/create_id.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/create_id.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/sign.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/sign.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/support.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/support.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,9 +25,9 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/main.py" root0="FORCE_HIGHLIGHTING" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 3
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="38mb8gq7SvSJwJ4CEsGIt1kJcbf" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -32,7 +41,7 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/GnetovaNS/pixo",
+    "last_opened_file_path": "//nas/redirect/MaksimovDD/Documents/pixo",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
