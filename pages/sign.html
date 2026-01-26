@@ -20,9 +20,9 @@
         </div>
         <div class="body_input">
             <h1>Sign In</h1>
-            <input type="text" placeholder="Username" class="inp" name="username" id="username">
-            <input type="password" placeholder="Password" class="inp" name="password" id="password">
-            <button type="submit" style="width: 14%; border-radius: 10px; padding: 7px 15px; width: 330px;">Submit</button>
+            <input type="text" placeholder="Username" class="inp" id="username">
+            <input type="password" placeholder="Password" class="inp" id="password">
+            <button style="width: 14%; border-radius: 10px; padding: 7px 15px; width: 330px;" onclick="login()">Submit</button>
             <a href="/create">Create</a>
         </div>
     </div>
@@ -34,6 +34,30 @@
             <a href="/support">Support</a>
         </div>
     </div>
-    <script async src="js/main.js"></script>
+      <script>
+    async function login() {
+      const username = document.getElementById("username");
+      const password = document.getElementById("password");
+      alert("dasdsadsadasdasd32432324344");
+
+      console.log("pupupu")
+
+      alert("dasdsadsadasdasd11111");
+
+      const response = await fetch("/register", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ username: username.value, password: password.value })
+      });
+
+      alert(response.ok);
+
+      if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem("token", data.access_token);
+        window.location.href = "/";
+      }
+    }
+  </script>
 </body>
 </html>

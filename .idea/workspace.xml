@@ -6,13 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="cd9e0aa6-97e7-46d4-9b0b-a4d7f553b20c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/about_us.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/about_us.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/catalog.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/catalog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/create.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/create_id.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/create_id.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/sign.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/sign.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/support.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/support.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,18 +28,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "//nas/redirect/MaksimovDD/Documents/pixo",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;//nas/redirect/MaksimovDD/Documents/pixo&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\GnetovaNS\pixo\static" />
