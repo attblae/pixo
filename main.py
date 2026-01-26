@@ -25,7 +25,32 @@ app.mount("/static", StaticFiles(directory="static/"))
 def root():
     return FileResponse("pages/main.html")
 
-@app.post('/pages'):
+
+@app.get("/sign")
+def root():
+    return FileResponse("pages/sign.html")
+
+@app.get("/catalog")
+def root():
+    return FileResponse("pages/catalog.html")
+
+@app.get("/about_us")
+def root():
+    return FileResponse("pages/about_us.html")
+
+@app.get("/create_id")
+def root():
+    return FileResponse("pages/create_id.html")
+
+@app.get("/create")
+def root():
+    return FileResponse("pages/create.html")
+
+@app.get("/support")
+def root():
+    return FileResponse("pages/support.html")
+
+@app.post('/pages')
 def singin(data = Body()):
     username = data['username']
     password = data['password']
