@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Body
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
@@ -24,6 +24,11 @@ app.mount("/static", StaticFiles(directory="static/"))
 @app.get("/")
 def root():
     return FileResponse("pages/main.html")
+
+@app.post('/pages'):
+def singin(data = Body()):
+    username = data['username']
+    password = data['password']
 
 
 
