@@ -27,12 +27,30 @@
         </div>
     </div>
     <div class="footer">
-        <a href="/"><img src="static/images/white_little.svg" alt="logo" style="max-width: 30px;"></a>
+        <a href="/"><img src="static/images/white_little.svg" alt="logo" style="max-width: 30px;" onclick='login()'></a>
         <div class="footer_text">
             <a href="/catalog">Catalog</a>
             <a href="/about_us">About us</a>
             <a href="/support">Support</a>
         </div>
     </div>
+      <script>
+    async function login() {
+      const username = document.getElementById("username");
+      const password = document.getElementById("password");
+
+      const response = await fetch("/register", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ username: username.value, password: password.value })
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem("token", data.access_token);
+        window.location.href = "/create_id";
+      }
+    }
+  </script>
 </body>
 </html>

@@ -20,11 +20,17 @@
         </div>
         <div class="body_input">
             <h1>Create</h1>
-            <input type="text" placeholder="Full name" class="inp">
-            <input type="password" placeholder="Passport number" class="inp">
-            <input type="text" placeholder="Passport series" class="inp">
-            <input type="password" placeholder="Phone number" class="inp">
-            <button type="submit" style="width: 14%; border-radius: 10px; padding: 7px 15px; width: 330px;">Submit</button>
+            <input type="text" placeholder="Name" class="inp" id="name">
+            <input type="text" placeholder="Surname" class="inp" id="surname">
+            <input type="text" placeholder="Patronymic" class="inp" id="patronymic">
+            <input type="text" placeholder="Phone number" class="inp" id="phone">
+            <input type="text" placeholder="Email address" class="inp" id="email">
+            <input type="text" placeholder="Passport series" class="inp" id="passport_series">
+            <input type="text" placeholder="Passport number" class="inp" id="passport_number">
+            <input type="text" placeholder="Card number" class="inp" id="card">
+            <input type="text" placeholder="Username" class="inp" id="username">
+            <input type="password" placeholder="Password" class="inp" id="password">
+            <button type="submit" style="width: 14%; border-radius: 10px; padding: 7px 15px; width: 330px;" onclick="login()">Submit</button>
             <a href="/sign">Sign in</a>
         </div>
     </div>
@@ -36,5 +42,27 @@
             <a href="/support">Support</a>
         </div>
     </div>
+    async function login() {
+        const name = document.getElementById("name");
+        const surname = document.getElementById("surname");
+        const patronymic = document.getElementById("patronymic");
+        const phone = document.getElementById("phone");
+        const email = document.getElementById("email");
+        const passport_series = document.getElementById("passport_series");
+        const password = document.getElementById("password");
+
+
+      const response = await fetch("/register", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ username: username.value, password: password.value })
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem("token", data.access_token);
+        window.location.href = "/sign";
+      }
+    }
 </body>
 </html>

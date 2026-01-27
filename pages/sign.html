@@ -38,19 +38,12 @@
     async function login() {
       const username = document.getElementById("username");
       const password = document.getElementById("password");
-      alert("dasdsadsadasdasd32432324344");
-
-      console.log("pupupu")
-
-      alert("dasdsadsadasdasd11111");
 
       const response = await fetch("/register", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({ username: username.value, password: password.value })
       });
-
-      alert(response.ok);
 
       if (response.ok) {
         const data = await response.json();
