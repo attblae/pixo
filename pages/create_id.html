@@ -30,7 +30,7 @@
             <input type="text" placeholder="Card number" class="inp" id="card">
             <input type="text" placeholder="Username" class="inp" id="username">
             <input type="password" placeholder="Password" class="inp" id="password">
-            <button type="submit" style="width: 14%; border-radius: 10px; padding: 7px 15px; width: 330px;" onclick="login()">Submit</button>
+            <button type="submit" style="width: 14%; border-radius: 10px; padding: 7px 15px; width: 330px;" onclick="registrate()">Submit</button>
             <a href="/sign">Sign in</a>
         </div>
     </div>
@@ -42,21 +42,29 @@
             <a href="/support">Support</a>
         </div>
     </div>
-    async function login() {
+    async function registrate() {
+        console.log("---------1")
         const name = document.getElementById("name");
         const surname = document.getElementById("surname");
         const patronymic = document.getElementById("patronymic");
         const phone = document.getElementById("phone");
         const email = document.getElementById("email");
         const passport_series = document.getElementById("passport_series");
-        const password = document.getElementById("password");
+        const passport_number = document.getElementById("passport_number");
+        const card = document.getElementById("card");
+        console.log("---------2")
 
-
-      const response = await fetch("/register", {
+      const response = await fetch("/registration", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({ username: username.value, password: password.value })
+        body: JSON.stringify({
+            name: name.value, surname: surname.value,
+            patronymic: patronymic.value, phone: phone.value,
+            email: email.value, passport_series: passport_series.value,
+            passport_number: passport_number.value, card: card.value
+        })
       });
+        console.log("---------3")
 
       if (response.ok) {
         const data = await response.json();

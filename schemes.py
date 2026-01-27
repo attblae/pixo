@@ -1,10 +1,15 @@
 from pydantic import BaseModel
 
-class RegisterIn(BaseModel):
+class SignIn(BaseModel):
     username: str
     password: str
 
-class Registration(BaseModel):
+class RegisterIn(BaseModel):
+    username: str
+    password: str
+    password_conf: str
+
+class Registration(RegisterIn):
     name: str
     surname: str
     patronymic: str
@@ -13,8 +18,6 @@ class Registration(BaseModel):
     passport_series: str
     passport_number: str
     card: str
-    username: str
-    password: str
 
 
 class LoginIn(BaseModel):

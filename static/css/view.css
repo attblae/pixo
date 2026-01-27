@@ -163,10 +163,9 @@ h1, h2, p, a, .icon, .logo {
   z-index: 2;
   display: flex;
   height: 100vh;
-  padding: 10% 0% 0% 0%;
   /* background-color: red; */
   /* justify-content: center; вертикаль */
-  align-items: center;     /* горизонталь */
+  align-items: center;   /* горизонталь */
   flex-direction: column;
   gap: 10px;
   opacity: 0;
@@ -206,7 +205,7 @@ inp::placeholder {
   }
 }
 
-/* Применить ко всем элементам, кроме одного с id="header" */
+/* Применить ко всем элементам, кроме одного с class=background" */
 body *:not(.background) {
   opacity: o;
   animation: fadeIn 1s forwards;
