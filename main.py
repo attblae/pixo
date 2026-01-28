@@ -1,15 +1,24 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
-from schemes import RegisterIn, Registration, SignIn
-from utils import hash_password
+from schemes import RegisterIn, SignIn, TokenOut
+from utils import hash_password, verify_password, create_access_token
 
 
 app = FastAPI()
 
 app.mount("/static", StaticFiles(directory="static/"))
 
-DB = {"dfhgkdfg": {'dfkjds': "sdljfhskd"}}
+DB = {'attblae': {
+    'password': '$pbkdf2-sha256$29000$S4kRIoTQ2ts757yX0ppTCg$wIXLTvKHpqWpurOiuvImHQInJpDeQh0JBgqC774WX68',
+    'name': 'N',
+    'surname': 'G',
+    'patronymic': 'S',
+    'phone': '9155554455',
+    'email': 'gns@gmail.com',
+    'passport_number': '1234',
+    'card': '123456789'
+}}
 
 
 @app.get("/")
@@ -43,22 +52,20 @@ def to_support():
 
 # ===== ПОСТЫ =====
 @app.post("/login")
-def login(data: SignIn,):
+def login(data: SignIn):
     if len(data.password) < 6:
         raise HTTPException(status_code=400, detail="Password is less then 6 symbols")
-    if data.username in DB.keys():
-        return {"status": "ok"}
 
-# @app.post("/registrate")
-# def register(data: RegisterIn):
-#     if data.password is None or data.username is None:
-#         raise HTTPException(status_code=400, detail="Field is empty")
-#     if len(data.password) < 6:
-#         raise HTTPException(status_code=400, detail="Password is less then 6 symbols")
-#     if data.password != data.password_conf:
-#         raise HTTPException(status_code=400, detail="Password does not confirmed")
-#
-#     return {"status": "ok"}
+    if not DB.get(data.username):
+        raise HTTPException(status_code=404, detail="User is not found")
+
+    hash_pass = DB[data.username]['password']
+    if not verify_password(data.password, hash_pass):
+        raise HTTPException(status_code=400, detail="Password does not valid")
+
+    token = create_access_token(data.username)
+    response = TokenOut(access_token=token)
+    return response
 
 @app.post("/registration")
 def register(data: RegisterIn):
@@ -76,10 +83,10 @@ def register(data: RegisterIn):
         "patronymic": data.patronymic,
         "phone": data.phone,
         "email": data.email,
-        "passport_series": data.passport_series,
         "passport_number": data.passport_number,
         "card": data.card
     }
+    print(DB[data.username])
 
     return {"status": "ok"}
 
