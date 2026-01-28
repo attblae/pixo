@@ -1,8 +1,9 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, JSONResponse
 from schemes import RegisterIn, SignIn, TokenOut
 from utils import hash_password, verify_password, create_access_token
+from fastapi.exceptions import RequestValidationError
 
 
 app = FastAPI()
@@ -10,15 +11,16 @@ app = FastAPI()
 app.mount("/static", StaticFiles(directory="static/"))
 
 DB = {'attblae': {
-    'password': '$pbkdf2-sha256$29000$S4kRIoTQ2ts757yX0ppTCg$wIXLTvKHpqWpurOiuvImHQInJpDeQh0JBgqC774WX68',
-    'name': 'N',
-    'surname': 'G',
-    'patronymic': 'S',
-    'phone': '9155554455',
-    'email': 'gns@gmail.com',
-    'passport_number': '1234',
-    'card': '123456789'
-}}
+        'password': '$pbkdf2-sha256$29000$S4kRIoTQ2ts757yX0ppTCg$wIXLTvKHpqWpurOiuvImHQInJpDeQh0JBgqC774WX68',
+        'name': 'N',
+        'surname': 'G',
+        'patronymic': 'S',
+        'phone': '9155554455',
+        'email': 'gns@gmail.com',
+        'passport_number': '1234',
+        'card': '123456789'
+    }
+}
 
 
 @app.get("/")
@@ -50,6 +52,31 @@ def to_create():
 def to_support():
     return FileResponse("pages/support.html")
 
+
+@app.exception_handler(HTTPException)
+async def http_exception_handler(request: Request, exc: HTTPException):
+    return JSONResponse(
+        status_code=exc.status_code,
+        content={
+            "message": exc.detail,
+            "status_code": exc.status_code
+        },
+        headers=exc.headers
+    )
+
+
+# Обработка ошибок валидации
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request: Request, exc: RequestValidationError):
+    return JSONResponse(
+        status_code=422,
+        content={
+            "message": 'exc.detail',
+            "errors": exc.errors(),
+            "body": exc.body
+        }
+    )
+
 # ===== ПОСТЫ =====
 @app.post("/login")
 def login(data: SignIn):
@@ -69,8 +96,6 @@ def login(data: SignIn):
 
 @app.post("/registration")
 def register(data: RegisterIn):
-    if data.password is None or data.username is None:
-        raise HTTPException(status_code=400, detail="Field is empty")
     if len(data.password) < 6:
         raise HTTPException(status_code=400, detail="Password is less then 6 symbols")
     if data.password != data.password_conf:

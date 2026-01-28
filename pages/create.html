@@ -44,7 +44,6 @@
     </div>
       <script>
     async function registerIn() {
-      console.log("---------1")
       const username = document.getElementById("username");
       const password = document.getElementById("password");
       const password_conf = document.getElementById("password_conf");
@@ -55,7 +54,6 @@
       const email = document.getElementById("email");
       const passport_number = document.getElementById("passport_number");
       const card = document.getElementById("card");
-      console.log("---------2")
 
       const response = await fetch("/registration", {
         method: "POST",
@@ -68,8 +66,11 @@
             email: email.value, passport_number: passport_number.value, card: card.value
         })
       });
-        console.log("---------3")
 
+      if (!response.ok) {
+        const data = await response.json();
+        alert(data.message);
+      }
     }
   </script>
 </body>

@@ -8,6 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/create.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/create_id.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/sign.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/sign.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/schemes.py" beforeDir="false" afterPath="$PROJECT_DIR$/schemes.py" afterDir="false" />
     </list>
