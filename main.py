@@ -23,32 +23,32 @@ DB = {'attblae': {
 }
 
 
-@app.get("/")
+@app.get("/", tags=["lincs"])
 def root():
     return FileResponse("pages/main.html")
 
 
-@app.get("/sign")
+@app.get("/sign", tags=["lincs"])
 def to_sign():
     return FileResponse("pages/sign.html")
 
-@app.get("/catalog")
+@app.get("/catalog", tags=["lincs"])
 def to_catalog():
     return FileResponse("pages/catalog.html")
 
-@app.get("/about_us")
+@app.get("/about_us", tags=["lincs"])
 def to_about():
     return FileResponse("pages/about_us.html")
 
-@app.get("/create_id")
+@app.get("/create_id", tags=["lincs"])
 def to_createid():
     return FileResponse("pages/create_id.html")
 
-@app.get("/create")
+@app.get("/create", tags=["lincs"])
 def to_create():
     return FileResponse("pages/create.html")
 
-@app.get("/support")
+@app.get("/support", tags=["lincs"])
 def to_support():
     return FileResponse("pages/support.html")
 

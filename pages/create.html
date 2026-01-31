@@ -43,19 +43,19 @@
         </div>
     </div>
       <script>
-    async function registerIn() {
-      const username = document.getElementById("username");
-      const password = document.getElementById("password");
-      const password_conf = document.getElementById("password_conf");
-      const name = document.getElementById("name");
-      const surname = document.getElementById("surname");
-      const patronymic = document.getElementById("patronymic");
-      const phone = document.getElementById("phone");
-      const email = document.getElementById("email");
-      const passport_number = document.getElementById("passport_number");
-      const card = document.getElementById("card");
+        async function registerIn() {
+            const username = document.getElementById("username");
+            const password = document.getElementById("password");
+            const password_conf = document.getElementById("password_conf");
+            const name = document.getElementById("name");
+            const surname = document.getElementById("surname");
+            const patronymic = document.getElementById("patronymic");
+            const phone = document.getElementById("phone");
+            const email = document.getElementById("email");
+            const passport_number = document.getElementById("passport_number");
+            const card = document.getElementById("card");
 
-      const response = await fetch("/registration", {
+            const response = await fetch("/registration", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
