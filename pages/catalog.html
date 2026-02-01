@@ -22,6 +22,8 @@
                 <div><a href="/sign"><img src="static/images/account_icon.svg" alt="icon" class="icon"></a></div>
             </div>
         </div>
+    <div class="body-catalog">
+    </div>
     </div>
     <div class="footer">
         <a href="/"><img src="static/images/white_little.svg" alt="logo" style="max-width: 30px;"></a>
@@ -31,5 +33,19 @@
             <a href="/support">Support</a>
         </div>
     </div>
+    <script>
+        'use strict';
+        const countElements = 20;
+        const divItem = document.querySelector('.body-catalog');
+
+        for (let i = 0; i < countElements; i++) {
+            let newItem = document.createElement('div');
+            newItem.className = 'catalog-item';
+            newItem.innerText = `Item ${i + 1}`;
+            divItem.append(newItem);
+        }
+        console.log(divItem);
+        console.log(`Added ${countElements} catalog items.`);
+    </script>
 </body>
 </html>
