@@ -67,8 +67,8 @@ def register(data: RegisterIn):
     save_user(data)
     return {"status": "ok"}
 
-@app.get("/about_us", tags=["lincs"])
-def get_db():
+# @app.get("/about_us", tags=["lincs"])
+# def get_db():
 
 
 

@@ -6,18 +6,19 @@ from consts import ACCESS_TOKEN_EXPIRE_MINUTES, ALGORITHM, SECRET_KEY
 from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
 from passlib.context import CryptContext
+from create_tables import users_base
 
-DB = {'attblae': {
-        'password': '$pbkdf2-sha256$29000$S4kRIoTQ2ts757yX0ppTCg$wIXLTvKHpqWpurOiuvImHQInJpDeQh0JBgqC774WX68',
-        'name': 'N',
-        'surname': 'G',
-        'patronymic': 'S',
-        'phone': '9155554455',
-        'email': 'gns@gmail.com',
-        'passport_number': '1234',
-        'card': '123456789'
-    }
-}
+# DB = {'attblae': {
+#         'password': '$pbkdf2-sha256$29000$S4kRIoTQ2ts757yX0ppTCg$wIXLTvKHpqWpurOiuvImHQInJpDeQh0JBgqC774WX68',
+#         'name': 'N',
+#         'surname': 'G',
+#         'patronymic': 'S',
+#         'phone': '9155554455',
+#         'email': 'gns@gmail.com',
+#         'passport_number': '1234',
+#         'card': '123456789'
+#     }
+# }
 
 
 pwd_context = CryptContext(schemes=["pbkdf2_sha256"], deprecated="auto")
@@ -75,9 +76,10 @@ def save_user(data):
         raise HTTPException(status_code=400, detail="Password does not confirmed")
 
     import sqlite3
-
     con = sqlite3.connect("database.db")
     cursor = con.cursor()
+    users_base(con, cursor)
+    
 
     cursor.execute(
         """INSERT INTO users (
