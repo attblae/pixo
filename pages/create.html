@@ -27,10 +27,10 @@
             <input type="text" placeholder="Surname" class="inp" id="surname">
             <input type="text" placeholder="Patronymic" class="inp" id="patronymic">
             <input type="text" placeholder="Phone number" class="inp" id="phone">
-            <input type="text" placeholder="Email address" class="inp" id="email">
+            <input type="email" placeholder="Email address" class="inp" id="email">
             <input type="text" placeholder="Passport number" class="inp" id="passport_number">
             <input type="text" placeholder="Card number" class="inp" id="card">
-            <button type="submit" style="width: 14%; border-radius: 10px; padding: 7px 15px; width: 330px;" onclick="registerIn()">Submit</button>
+            <a href="/sign"><button type="submit" style="width: 14%; border-radius: 10px; padding: 7px 15px; width: 330px;" onclick="registerIn()">Submit</button></a>
             <a href="/sign">Sign in</a>
         </div>
     </div>
@@ -56,9 +56,9 @@
             const card = document.getElementById("card");
 
             const response = await fetch("/registration", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
             username: username.value,
             password: password.value,
             password_conf: password_conf.value,
