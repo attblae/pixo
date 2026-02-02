@@ -210,10 +210,25 @@ inp::placeholder {
 }
 
 .catalog-item {
-  background-color: pink;
-  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #9378fd;
+  border-radius: 25px;
   width: 20%;
-  height: 200px;
+  height: 400px;
+}
+
+.catalog_pic {
+  display: block;
+  background-color: #e8e4ff;
+  border-radius: 25px;
+  width: 70%;
+  height: 70%;
+}
+
+.catalog_price {
+  margin-bottom: 80%;
 }
 
 @keyframes fadeIn {

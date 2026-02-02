@@ -34,17 +34,44 @@
         </div>
     </div>
     <script>
+        // 'use strict';
+        // const countElements = 8;
+        // const divItem = document.querySelector('.body-catalog');
+        // for (let i = 0; i < countElements; i++) {
+        //     let newItem = document.createElement('div');
+        //     newItem.className = 'catalog-item';
+        //     newItem.innerText = `Item ${i + 1}`;
+        //     divItem.append(newItem);
+        // }
+        // console.log(divItem);
+        // console.log(`Added ${countElements} catalog items.`);
+        
         'use strict';
-        const countElements = 2;
+        const countElements = 8;
         const divItem = document.querySelector('.body-catalog');
+
         for (let i = 0; i < countElements; i++) {
             let newItem = document.createElement('div');
             newItem.className = 'catalog-item';
             newItem.innerText = `Item ${i + 1}`;
-            divItem.append(newItem);
+
+            let innerDiv = document.createElement('div');
+            innerDiv.className = 'catalog_pic';
+
+            let innerPrice = document.createElement('div');
+            innerPrice.className = 'catalog_text';
+            innerPrice.innerText = 'Price ...'
+
+            newItem.appendChild(innerPrice);
+            newItem.appendChild(innerDiv);
+            divItem.appendChild(newItem);
+
         }
+
         console.log(divItem);
         console.log(`Added ${countElements} catalog items.`);
+
     </script>
+    
 </body>
 </html>
