@@ -59,11 +59,16 @@
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-            username: username.value, password: password.value,
+            username: username.value,
+            password: password.value,
             password_conf: password_conf.value,
-            name: name.value, surname: surname.value,
-            patronymic: patronymic.value, phone: phone.value,
-            email: email.value, passport_number: passport_number.value, card: card.value
+            name: name.value,
+            surname: surname.value,
+            patronymic: patronymic.value,
+            phone: phone.value,
+            email: email.value,
+            passport_number: passport_number.value,
+            card: card.value
         })
       });
 

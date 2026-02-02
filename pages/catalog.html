@@ -14,7 +14,7 @@
             <a href="/"><img src="static/images/logo_white.svg" alt="logo" class="logo"></a>
             <div>
                  <input type="text" placeholder="Search" class="inp">
-                 <button>🔎</button>
+                 <button></button>
             </div>
             <div class="right-part">
                 <a href="/about_us">About us</a>
@@ -35,9 +35,8 @@
     </div>
     <script>
         'use strict';
-        const countElements = 20;
+        const countElements = 2;
         const divItem = document.querySelector('.body-catalog');
-
         for (let i = 0; i < countElements; i++) {
             let newItem = document.createElement('div');
             newItem.className = 'catalog-item';
