@@ -46,18 +46,18 @@ def login(data):
     cursor = con.cursor()
 
     user = cursor.execute(
-        "SELECT username, password FROM users WHERE ?",
+        "SELECT username, password FROM users WHERE username = ?",
         (data.username,)
     ).fetchone()
     cursor.close()
     print(user)
 
-    # if not user:
-    #     raise HTTPException(status_code=404, detail="User is not found")
-    #
-    # hash_pass = DB[data.username]['password']
-    # if not verify_password(data.password, hash_pass):
-    #     raise HTTPException(status_code=400, detail="Password does not valid")
+    if not user:
+        raise HTTPException(status_code=404, detail="User is not found")
+
+    hash_pass = user[1]
+    if not verify_password(data.password, hash_pass):
+        raise HTTPException(status_code=400, detail="Password does not valid")
 
     token = create_access_token(data.username)
     response = TokenOut(access_token=token)
@@ -69,7 +69,6 @@ def save_user(data):
     if data.password != data.password_conf:
         raise HTTPException(status_code=400, detail="Password does not confirmed")
 
-    import sqlite3
     con = sqlite3.connect("database.db")
     cursor = con.cursor()
 
