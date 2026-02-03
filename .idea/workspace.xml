@@ -11,6 +11,10 @@
       <change beforePath="$PROJECT_DIR$/auth_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/auth_service.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/create_tables.py" beforeDir="false" afterPath="$PROJECT_DIR$/create_tables.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+<<<<<<< HEAD
+=======
+      <change beforePath="$PROJECT_DIR$/schemes.py" beforeDir="false" afterPath="$PROJECT_DIR$/schemes.py" afterDir="false" />
+>>>>>>> c446ccf11004d8e88f44176906858d119fd1f748
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

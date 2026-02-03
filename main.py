@@ -67,9 +67,44 @@ def register(data: RegisterIn):
     save_user(data)
     return {"status": "ok"}
 
-# @app.get("/about_us", tags=["lincs"])
-# def get_db():
+@app.get("/users")
+def register():
+    result = []
+    import sqlite3
+    con = sqlite3.connect("database.db")
+    cursor = con.cursor()
 
+    users = cursor.execute(
+        """
+        SELECT 
+            username, 
+            password, 
+            name, 
+            surname, 
+            patronymic, 
+            phone, 
+            email, 
+            passport_number, 
+            card 
+        FROM users
+        """
+    ).fetchall()
+
+    for user in users:
+        result.append(
+            {
+                "username": user[0],
+                "password": user[1],
+                "name": user[2],
+                "surname": user[3],
+                "patronymic": user[4],
+                "phone": user[5],
+                "email": user[6],
+                "passport_number": user[7],
+                "card": user[8]
+            }
+        )
+    return result
 
 
 if __name__ == "__main__":
