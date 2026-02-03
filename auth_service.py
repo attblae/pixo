@@ -45,17 +45,17 @@ def login(data):
     con = sqlite3.connect("database.db")
     cursor = con.cursor()
 
-    user = cursor.execute(
-        "SELECT username, password FROM users WHERE username = ?",
+    hash_pass = cursor.execute(
+        "SELECT password FROM users WHERE username = ?",
         (data.username,)
     ).fetchone()
     cursor.close()
-    print(user)
 
-    if not user:
+    print(hash_pass)
+
+    if not hash_pass:
         raise HTTPException(status_code=404, detail="User is not found")
 
-    hash_pass = user[1]
     if not verify_password(data.password, hash_pass):
         raise HTTPException(status_code=400, detail="Password does not valid")
 
@@ -112,6 +112,8 @@ def get_users():
         """
         SELECT username, password, name, surname, patronymic, phone, email, passport_number, card FROM users
         """).fetchall()
+    con.commit()
+    con.close()
 
     for user in users:
         result.append(

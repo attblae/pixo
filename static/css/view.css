@@ -231,6 +231,27 @@ inp::placeholder {
   margin-bottom: 80%;
 }
 
+.account_body {
+  display: flex;
+}
+.account_hedder {
+ background-color: red;
+ width: 100%;
+ height: 300px;
+}
+
+.account_discription {
+  background-color: orange;
+  width: 100%;
+  height: 300px;
+}
+
+.account_works {
+  background-color: yellow;
+  width: 100%;
+  height: 300px;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
