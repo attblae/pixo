@@ -78,8 +78,7 @@ def save_user(data):
     import sqlite3
     con = sqlite3.connect("database.db")
     cursor = con.cursor()
-    users_base(con, cursor)
-    
+
 
     cursor.execute(
         """INSERT INTO users (
@@ -108,3 +107,4 @@ def save_user(data):
     )
 
     con.commit()
+    con.close()
