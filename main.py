@@ -4,6 +4,9 @@ from fastapi.responses import FileResponse, JSONResponse
 from schemes import RegisterIn, SignIn
 from auth_service import login, save_user, get_users
 from fastapi.exceptions import RequestValidationError
+from create_tables import users_base
+import sqlite3
+
 
 
 app = FastAPI()
@@ -113,9 +116,11 @@ if __name__ == "__main__":
     import uvicorn
     # 127.0.0.1
     # 0.0.0.0
-    # con = sqlite3.connect("database.db")
-    # cursor = con.cursor()
-    # users_base(con, cursor)
+    con = sqlite3.connect("database.db")
+    cursor = con.cursor()
+    users_base(con, cursor)
+    con.commit()
+    con.close()
     uvicorn.run(
         "main:app",
         host="127.0.0.1",

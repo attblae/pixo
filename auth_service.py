@@ -69,8 +69,14 @@ def save_user(data):
     if data.password != data.password_conf:
         raise HTTPException(status_code=400, detail="Password does not confirmed")
 
+
     con = sqlite3.connect("database.db")
     cursor = con.cursor()
+
+    usernames = cursor.execute('''SELECT username FROM users''')
+    if data.username in usernames:
+        raise HTTPException(status_code=400, detail='Username is already used')
+
 
     cursor.execute(
         """INSERT INTO users (
