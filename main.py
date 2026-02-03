@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException, Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, JSONResponse
 from schemes import RegisterIn, SignIn
-from auth_service import login, save_user
+from auth_service import login, save_user, get_users
 from fastapi.exceptions import RequestValidationError
 
 
@@ -68,33 +68,8 @@ def register(data: RegisterIn):
     return {"status": "ok"}
 
 @app.get("/users")
-def register():
-    result = []
-    import sqlite3
-    con = sqlite3.connect("database.db")
-    cursor = con.cursor()
-
-    users = cursor.execute(
-        """
-        SELECT username, password, name, surname, patronymic, phone, email, passport_number, card FROM users
-        """).fetchall()
-
-    for user in users:
-        result.append(
-            {
-                "username": user[0],
-                "password": user[1],
-                "name": user[2],
-                "surname": user[3],
-                "patronymic": user[4],
-                "phone": user[5],
-                "email": user[6],
-                "passport_number": user[7],
-                "card": user[8]
-            }
-        )
-    return result
-
+def users():
+     return get_users()
 
 if __name__ == "__main__":
     import uvicorn

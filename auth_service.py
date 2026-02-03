@@ -6,20 +6,7 @@ from consts import ACCESS_TOKEN_EXPIRE_MINUTES, ALGORITHM, SECRET_KEY
 from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
 from passlib.context import CryptContext
-from create_tables import users_base
-
-# DB = {'attblae': {
-#         'password': '$pbkdf2-sha256$29000$S4kRIoTQ2ts757yX0ppTCg$wIXLTvKHpqWpurOiuvImHQInJpDeQh0JBgqC774WX68',
-#         'name': 'N',
-#         'surname': 'G',
-#         'patronymic': 'S',
-#         'phone': '9155554455',
-#         'email': 'gns@gmail.com',
-#         'passport_number': '1234',
-#         'card': '123456789'
-#     }
-# }
-
+import sqlite3
 
 pwd_context = CryptContext(schemes=["pbkdf2_sha256"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
@@ -75,7 +62,6 @@ def save_user(data):
     if data.password != data.password_conf:
         raise HTTPException(status_code=400, detail="Password does not confirmed")
 
-    import sqlite3
     con = sqlite3.connect("database.db")
     cursor = con.cursor()
 
@@ -108,3 +94,31 @@ def save_user(data):
 
     con.commit()
     con.close()
+
+
+def get_users():
+    result = []
+    import sqlite3
+    con = sqlite3.connect("database.db")
+    cursor = con.cursor()
+
+    users = cursor.execute(
+        """
+        SELECT username, password, name, surname, patronymic, phone, email, passport_number, card FROM users
+        """).fetchall()
+
+    for user in users:
+        result.append(
+            {
+                "username": user[0],
+                "password": user[1],
+                "name": user[2],
+                "surname": user[3],
+                "patronymic": user[4],
+                "phone": user[5],
+                "email": user[6],
+                "passport_number": user[7],
+                "card": user[8]
+            }
+        )
+    return result
