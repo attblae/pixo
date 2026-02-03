@@ -76,6 +76,9 @@ if __name__ == "__main__":
     import uvicorn
     # 127.0.0.1
     # 0.0.0.0
+    # con = sqlite3.connect("database.db")
+    # cursor = con.cursor()
+    # users_base(con, cursor)
     uvicorn.run(
         "main:app",
         host="127.0.0.1",

@@ -6,20 +6,7 @@ from consts import ACCESS_TOKEN_EXPIRE_MINUTES, ALGORITHM, SECRET_KEY
 from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
 from passlib.context import CryptContext
-from create_tables import users_base
-
-# DB = {'attblae': {
-#         'password': '$pbkdf2-sha256$29000$S4kRIoTQ2ts757yX0ppTCg$wIXLTvKHpqWpurOiuvImHQInJpDeQh0JBgqC774WX68',
-#         'name': 'N',
-#         'surname': 'G',
-#         'patronymic': 'S',
-#         'phone': '9155554455',
-#         'email': 'gns@gmail.com',
-#         'passport_number': '1234',
-#         'card': '123456789'
-#     }
-# }
-
+import sqlite3
 
 pwd_context = CryptContext(schemes=["pbkdf2_sha256"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
@@ -55,15 +42,22 @@ def get_current_username(token: str = Depends(oauth2_scheme)) -> str:
 
 
 def login(data):
-    if len(data.password) < 6:
-        raise HTTPException(status_code=400, detail="Password is less then 6 symbols")
+    con = sqlite3.connect("database.db")
+    cursor = con.cursor()
 
-    if not DB.get(data.username):
-        raise HTTPException(status_code=404, detail="User is not found")
+    user = cursor.execute(
+        "SELECT username, password FROM users WHERE ?",
+        (data.username,)
+    ).fetchone()
+    cursor.close()
+    print(user)
 
-    hash_pass = DB[data.username]['password']
-    if not verify_password(data.password, hash_pass):
-        raise HTTPException(status_code=400, detail="Password does not valid")
+    # if not user:
+    #     raise HTTPException(status_code=404, detail="User is not found")
+    #
+    # hash_pass = DB[data.username]['password']
+    # if not verify_password(data.password, hash_pass):
+    #     raise HTTPException(status_code=400, detail="Password does not valid")
 
     token = create_access_token(data.username)
     response = TokenOut(access_token=token)
@@ -78,7 +72,6 @@ def save_user(data):
     import sqlite3
     con = sqlite3.connect("database.db")
     cursor = con.cursor()
-    users_base(con, cursor)
     
 
     cursor.execute(
