@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException, Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, JSONResponse
 from schemes import RegisterIn, SignIn
-from auth_service import login, save_user
+from auth_service import login, save_user, get_users
 from fastapi.exceptions import RequestValidationError
 
 
@@ -106,6 +106,8 @@ def register():
         )
     return result
 
+def users():
+     return get_users()
 
 if __name__ == "__main__":
     import uvicorn
