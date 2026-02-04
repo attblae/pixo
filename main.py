@@ -29,7 +29,7 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
     return JSONResponse(
         status_code=422,
         content={
-            "message": 'exc.detail',
+            "message": 'Different problem',
             "errors": exc.errors(),
             "body": exc.body
         }
@@ -116,7 +116,7 @@ if __name__ == "__main__":
     import uvicorn
     # 127.0.0.1
     # 0.0.0.0
-    con = sqlite3.connect("database.db")
+    con = sqlite3.connect("static/database.db")
     cursor = con.cursor()
     users_base(con, cursor)
     con.commit()

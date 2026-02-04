@@ -30,7 +30,7 @@
             <input type="email" placeholder="Email address" class="inp" id="email">
             <input type="text" placeholder="Passport number" class="inp" id="passport_number">
             <input type="text" placeholder="Card number" class="inp" id="card">
-            <a href="/sign"><button type="submit" style="width: 14%; border-radius: 10px; padding: 7px 15px; width: 330px;" onclick="registerIn()">Submit</button></a>
+            <button type="submit" style="width: 14%; border-radius: 10px; padding: 7px 15px; width: 330px;" onclick="registerIn()">Submit</button>
             <a href="/sign">Sign in</a>
         </div>
     </div>
@@ -71,8 +71,11 @@
             card: card.value
         })
       });
-
-      if (!response.ok) {
+      if (response.ok){
+        const data = await response.json();
+        localStorage.setItem("token", data.access_token);
+        window.location.href = "/";
+      } else {
         const data = await response.json();
         alert(data.message);
       }

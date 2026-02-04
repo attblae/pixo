@@ -1,5 +1,5 @@
-from fastapi import Depends, status
-from fastapi import HTTPException
+from fastapi import Depends, status, HTTPException
+from fastapi.exceptions import RequestValidationError
 from schemes import TokenOut
 from datetime import datetime, timedelta
 from consts import ACCESS_TOKEN_EXPIRE_MINUTES, ALGORITHM, SECRET_KEY
@@ -42,7 +42,7 @@ def get_current_username(token: str = Depends(oauth2_scheme)) -> str:
 
 
 def login(data):
-    con = sqlite3.connect("database.db")
+    con = sqlite3.connect("static/database.db")
     cursor = con.cursor()
 
     hash_pass = cursor.execute(
@@ -56,7 +56,7 @@ def login(data):
     if not hash_pass:
         raise HTTPException(status_code=404, detail="User is not found")
 
-    if not verify_password(data.password, hash_pass):
+    if not verify_password(data.password, hash_pass[0]):
         raise HTTPException(status_code=400, detail="Password does not valid")
 
     token = create_access_token(data.username)
@@ -64,18 +64,23 @@ def login(data):
     return response
 
 def save_user(data):
-    if len(data.password) < 6:
-        raise HTTPException(status_code=400, detail="Password is less then 6 symbols")
-    if data.password != data.password_conf:
-        raise HTTPException(status_code=400, detail="Password does not confirmed")
+    data_information = data.model_dump()
+    if any(" " in data_info for data_info in data_information.values()):
+        raise HTTPException(status_code=400, detail="Information contains blank space")
 
 
-    con = sqlite3.connect("database.db")
+    con = sqlite3.connect("static/database.db")
     cursor = con.cursor()
 
-    usernames = cursor.execute('''SELECT username FROM users''')
-    if data.username in usernames:
-        raise HTTPException(status_code=400, detail='Username is already used')
+    username = cursor.execute(
+        "SELECT username FROM users WHERE username = ?",
+        (data.username,)
+    ).fetchone()
+
+    print(username)
+
+    if username:
+        raise HTTPException(status_code=400, detail="Username is already used")
 
 
     cursor.execute(
@@ -92,15 +97,15 @@ def save_user(data):
             ) VAlUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
         """,
         (
-            data.username,
-            hash_password(data.password),
-            data.name,
-            data.surname,
-            data.patronymic,
-            data.phone,
-            data.email,
-            data.passport_number,
-            data.card
+            data.username.replace(" ", ""),
+            hash_password(data.password).replace(" ", ""),
+            data.name.replace(" ", ""),
+            data.surname.replace(" ", ""),
+            data.patronymic.replace(" ", ""),
+            data.phone.replace(" ", ""),
+            data.email.replace(" ", ""),
+            data.passport_number.replace(" ", ""),
+            data.card.replace(" ", "")
         )
     )
 
@@ -111,7 +116,7 @@ def save_user(data):
 def get_users():
     result = []
     import sqlite3
-    con = sqlite3.connect("database.db")
+    con = sqlite3.connect("static/database.db")
     cursor = con.cursor()
 
     users = cursor.execute(
@@ -124,15 +129,16 @@ def get_users():
     for user in users:
         result.append(
             {
-                "username": user[0],
-                "password": user[1],
-                "name": user[2],
-                "surname": user[3],
-                "patronymic": user[4],
-                "phone": user[5],
-                "email": user[6],
-                "passport_number": user[7],
-                "card": user[8]
+                user[0] : {
+                    "password": user[1],
+                    "name": user[2],
+                    "surname": user[3],
+                    "patronymic": user[4],
+                    "phone": user[5],
+                    "email": user[6],
+                    "passport_number": user[7],
+                    "card": user[8]
+                }
             }
         )
     return result
