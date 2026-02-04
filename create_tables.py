@@ -16,6 +16,3 @@ def users_base(con, cursor):
     """
     )
     con.commit()
-
-
-
