@@ -233,23 +233,54 @@ inp::placeholder {
 
 .account_body {
   display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
 .account_hedder {
- background-color: red;
- width: 100%;
- height: 300px;
+ /* background-color: red; */
+ width: 70%;
+ display: flex;
+ align-items: end;
+}
+
+.account_icon {
+  width: 200px;
+  height: 200px;
+  background-color: wheat;
+  border-radius: 30px;
+  margin: 2%;
+}
+
+.account_username {
+  color: white;
+  margin-bottom: 40px;
+  font-size: 40px;
 }
 
 .account_discription {
-  background-color: orange;
-  width: 100%;
-  height: 300px;
+  /* background-color: orange; */
+  width: 70%;
+  height: 333px;
+  color: white;
+  font-size: 30px;
 }
 
 .account_works {
-  background-color: yellow;
-  width: 100%;
-  height: 300px;
+  /* background-color: yellow; */
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 80%;
+  padding: 4%;
+}
+
+.account_work {
+  background-color: white;
+  width: 20%;
+  height: 200px;
+  border-radius: 5px;
 }
 
 @keyframes fadeIn {
