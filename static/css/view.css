@@ -224,8 +224,7 @@ inp::placeholder {
   flex-direction: column;
   background-color: #9378fd;
   border-radius: 25px;
-  width: 20%;
-  height: 400px;
+  overflow: hidden;
 }
 
 .catalog_pic {

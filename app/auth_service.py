@@ -1,0 +1,145 @@
+from fastapi import Depends, status, HTTPException
+from fastapi.exceptions import RequestValidationError
+from schemes import TokenOut
+from datetime import datetime, timedelta
+from consts import ACCESS_TOKEN_EXPIRE_MINUTES, ALGORITHM, SECRET_KEY
+from fastapi.security import OAuth2PasswordBearer
+from jose import JWTError, jwt
+from passlib.context import CryptContext
+import sqlite3
+from create_tables import users_base
+
+pwd_context = CryptContext(schemes=["pbkdf2_sha256"], deprecated="auto")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+
+def hash_password(password: str) -> str:
+    return pwd_context.hash(password)
+
+
+def verify_password(password: str, hashed: str) -> bool:
+    return pwd_context.verify(password, hashed)
+
+
+def create_access_token(subject: str, expires_delta = None) -> str:
+    expire = datetime.utcnow() + (expires_delta or timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES))
+    to_encode = {"sub": subject, "exp": expire}
+    return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+
+
+def get_current_username(token: str = Depends(oauth2_scheme)) -> str:
+    cred_exc = HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="Не авторизован",
+        headers={"WWW-Authenticate": "Bearer"},
+    )
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        username = payload.get("sub")
+        if not username:
+            raise cred_exc
+        return username
+    except JWTError:
+        raise cred_exc
+
+
+def login(data):
+    con = sqlite3.connect("static/database.db")
+    cursor = con.cursor()
+
+    hash_pass = cursor.execute(
+        "SELECT password FROM users WHERE username = ?",
+        (data.username,)
+    ).fetchone()
+    cursor.close()
+
+    print(hash_pass)
+
+    if not hash_pass:
+        raise HTTPException(status_code=404, detail="User is not found")
+
+    if not verify_password(data.password, hash_pass[0]):
+        raise HTTPException(status_code=400, detail="Password does not valid")
+
+    token = create_access_token(data.username)
+    response = TokenOut(access_token=token)
+    return response
+
+def save_user(data):
+    data_information = data.model_dump()
+    if any(" " in data_info for data_info in data_information.values()):
+        raise HTTPException(status_code=400, detail="Information contains blank space")
+
+    
+    con = sqlite3.connect("static/database.db")
+    cursor = con.cursor()
+
+    username = cursor.execute(
+        "SELECT username FROM users WHERE username = ?",
+        (data.username,)
+    ).fetchone()
+
+    print(username)
+
+    if username:
+        raise HTTPException(status_code=400, detail="Username is already used")
+
+
+    cursor.execute(
+        """INSERT INTO users (
+            username, 
+            password, 
+            name, 
+            surname, 
+            patronymic, 
+            phone, 
+            email, 
+            passport_number, 
+            card
+            ) VAlUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """,
+        (
+            data.username.replace(" ", ""),
+            hash_password(data.password).replace(" ", ""),
+            data.name.replace(" ", ""),
+            data.surname.replace(" ", ""),
+            data.patronymic.replace(" ", ""),
+            data.phone.replace(" ", ""),
+            data.email.replace(" ", ""),
+            data.passport_number.replace(" ", ""),
+            data.card.replace(" ", "")
+        )
+    )
+
+    con.commit()
+    con.close()
+
+
+def users():
+    result = []
+    import sqlite3
+    con = sqlite3.connect("static/database.db")
+    cursor = con.cursor()
+
+    users = cursor.execute(
+        """
+        SELECT username, password, name, surname, patronymic, phone, email, passport_number, card FROM users
+        """).fetchall()
+    con.commit()
+    con.close()
+
+    for user in users:
+        result.append(
+            {
+                user[0] : {
+                    "password": user[1],
+                    "name": user[2],
+                    "surname": user[3],
+                    "patronymic": user[4],
+                    "phone": user[5],
+                    "email": user[6],
+                    "passport_number": user[7],
+                    "card": user[8]
+                }
+            }
+        )
+    return result

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>PIXO</title>
     <link rel="shortcut icon" href="static/images/logo_img.svg">
-    <link rel="stylesheet" href="static/css/view.css">
+    <link rel="stylesheet" href="../static/css/view.css">
 </head>
 <body>
     <div class="background">
@@ -12,9 +12,9 @@
         <img src="static/images/decor.svg" alt="shape" style="position: absolute; max-width: 1000px; min-width: 100px; left: -30%; bottom: 0%; z-index: 1;">
         <div class="header">
             <a href="/"><img src="static/images/logo_white.svg" alt="logo" class="logo"></a>
-            <div>
-                 <input type="text" placeholder="Search" class="inp">
-                 <button></button>
+            <div style="display: flex; justify-content: center; align-items: center;">
+                <input type="text" placeholder="Search" class="inp">
+                <button style="padding: 0 0 0 0; width: 50px; height: 50px; border-radius: 10px; margin-left: 5px; font-size: 30px;">🔍︎</button>
             </div>
             <div class="right-part">
                 <a href="/about_us">About us</a>
@@ -34,43 +34,35 @@
         </div>
     </div>
     <script>
-        // 'use strict';
-        // const countElements = 8;
-        // const divItem = document.querySelector('.body-catalog');
-        // for (let i = 0; i < countElements; i++) {
-        //     let newItem = document.createElement('div');
-        //     newItem.className = 'catalog-item';
-        //     newItem.innerText = `Item ${i + 1}`;
-        //     divItem.append(newItem);
-        // }
-        // console.log(divItem);
-        // console.log(`Added ${countElements} catalog items.`);
-        
         'use strict';
-        const countElements = 8;
         const divItem = document.querySelector('.body-catalog');
 
-        for (let i = 0; i < countElements; i++) {
-            let newItem = document.createElement('div');
-            newItem.className = 'catalog-item';
-            newItem.innerText = `Item ${i + 1}`;
+        // Загружаем список файлов с сервера
+        fetch('/files')
+            .then(response => response.json())
+            .then(files => {
+                files.forEach((file, index) => {
 
-            let innerDiv = document.createElement('div');
-            innerDiv.className = 'catalog_pic';
-
-            let innerPrice = document.createElement('div');
-            innerPrice.className = 'catalog_text';
-            innerPrice.innerText = 'Price ...'
-
-            newItem.appendChild(innerPrice);
-            newItem.appendChild(innerDiv);
-            divItem.appendChild(newItem);
-
-        }
-
-        console.log(divItem);
-        console.log(`Added ${countElements} catalog items.`);
-
+                    let innerDiv = document.createElement('div');
+                    innerDiv.className = 'catalog-item';
+                    innerDiv.style.width = 400 + 'px';
+                    innerDiv.style.height = 400 + 'px';
+                    console.log(file);
+                    // Добавляем изображение
+                    let img = document.createElement('img');
+                    img.src = file.url;
+                    img.alt = file.filename;
+                    img.style.width = file.width + 'px';
+                    img.style.height = file.height + 'px';
+                    img.style.objectFit = 'cover';
+                    innerDiv.appendChild(img);
+                    divItem.appendChild(innerDiv);
+                });
+            })
+            .catch(error => {
+                console.error('Ошибка при загрузке файлов:', error);
+                divItem.innerHTML = '<p>Ошибка при загрузке работ</p>';
+            });
     </script>
     
 </body>
