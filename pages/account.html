@@ -6,10 +6,10 @@
     <link rel="shortcut icon" href="static/images/logo_img.svg">
     <link rel="stylesheet" href="../static/css/view.css">
 </head>
-<body>
+<body >
     <div class="background">
-        <img src="static/images/decor.svg" alt="shape" style="position: absolute; max-width: 650px; min-width: 50px; right: 0%; top: 25%; z-index: 1;">
-        <img src="static/images/decor.svg" alt="shape" style="position: absolute; max-width: 1000px; min-width: 100px; left: -30%; bottom: 0%; z-index: 1;">
+        <!-- <img src="static/images/decor.svg" alt="shape" style="position: absolute; max-width: 650px; min-width: 50px; right: 0%; top: 25%; z-index: 1;">
+        <img src="static/images/decor.svg" alt="shape" style="position: absolute; max-width: 1000px; min-width: 100px; left: -30%; bottom: 0%; z-index: 1;"> -->
         <div class="header">
             <img src="static/images/logo_white.svg" alt="logo" class="logo">
             <div class="right-part">
@@ -24,12 +24,42 @@
                 <div class="account_icon"></div>
                 <div class="account_username">Danche</div>
             </div>
+
             <div class="account_discription">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut distinctio omnis voluptatum. Atque inventore ex voluptatibus sapiente quas possimus nam eius hic. Asperiores illo fugit, ad ab eveniet laborum iusto? Placeat delectus amet accusamus ullam eius eum quam autem sequi nostrum consequuntur voluptate earum minus laboriosam incidunt nobis aspernatur officiis, fuga quae quas totam ea? Ipsa quisquam suscipit facere non harum animi eligendi totam, officiis inventore iste quidem, ex quos provident eos in nostrum id, alias possimus amet quia! Officiis maxime, dolor deserunt porro delectus voluptatibus enim necessitatibus! Veritatis dignissimos quasi facilis id architecto consequatur necessitatibus quae repudiandae dolor quaerat.
+                account discription
             </div>
-            <button style="margin: 30px 0;" onclick="">Upload your work</button>
-            <div class="account_works">
+            
+            <div class="upload-area" onclick="document.getElementById('fileInput').click()">
+                <p style="color: white; text-align: center; font-family: PoppinsRegular;">Select a file</p>
+                <p style="color: white; text-align: center;">Supported formats:</p>
+                <p style="color: white; text-align: center;">PNG, JPG, JPEG, GIF, WEBP</p>
             </div>
+
+            <input type="file" id="fileInput" multiple accept="image/*" style="display:none" onchange="handleFileSelect(event)">
+            
+            <div id="fileInfo"></div>
+        
+            <div id="previewContainer"></div>
+            
+            <div id="progressContainer">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div id="progressText" style="text-align:center; margin-top:5px; color: white;">0%</div>
+            </div>
+
+            <button id="uploadButton" style="margin: 10px 0; width: 40%; border-radius: 5px; padding: 0;" onclick="uploadFiles()" disabled>Upload your work</button>
+            
+            <div id="message" class="message"></div>
+            
+            <div class="file-list">
+                <p>Uploaded files:</p>
+                <div id="filesContainer"></div>
+            </div>
+
+            <!-- <div class="account_works">
+                ...
+            </div> -->
         </div>
     </div>
     <div class="footer">
@@ -40,10 +70,7 @@
             <a href="/support">Support</a>
         </div>
     </div>
-    <script>
-        async function Upload() {
-            
-        }
-    </script>
+
+    <script src="static/js/main.js"></script>
 </body>
 </html>

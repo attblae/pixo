@@ -7,6 +7,7 @@ from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
 from passlib.context import CryptContext
 import sqlite3
+from create_tables import users_base
 
 pwd_context = CryptContext(schemes=["pbkdf2_sha256"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
@@ -68,7 +69,7 @@ def save_user(data):
     if any(" " in data_info for data_info in data_information.values()):
         raise HTTPException(status_code=400, detail="Information contains blank space")
 
-
+    
     con = sqlite3.connect("static/database.db")
     cursor = con.cursor()
 
@@ -113,7 +114,7 @@ def save_user(data):
     con.close()
 
 
-def get_users():
+def users():
     result = []
     import sqlite3
     con = sqlite3.connect("static/database.db")

@@ -50,6 +50,15 @@ button:hover {
   box-shadow: 0 0 20px #9378fd;
 }
 
+button:disabled {
+    background-color: #181133;
+    color: #2e2555;;
+    border-radius: 50px;
+    border: 2px none #23194d;
+    cursor:auto;
+    box-shadow: none;
+}
+
 .background {
   position: relative;
   background-color: #04001b;
@@ -247,7 +256,7 @@ inp::placeholder {
 .account_icon {
   width: 200px;
   height: 200px;
-  background-color: wheat;
+  background-color: rgb(0, 0, 0);
   border-radius: 30px;
   margin: 2%;
 }
@@ -281,6 +290,79 @@ inp::placeholder {
   height: 200px;
   border-radius: 5px;
 }
+
+.upload-area {
+  background-color: #04001b;
+  margin-top: 4%;
+  width: 40%;
+  border: #201c38 dotted 5px;
+  border-radius: 10px;
+  padding: 10px 0;
+  transition-duration: 0.4s;
+}
+
+.upload-area:hover {
+  background-color: #06002b;
+  cursor: pointer;
+}
+
+
+
+.file-list {
+  margin-top: 20px;
+  border-top: 1px solid #211953;
+  padding-top: 20px;
+}
+
+.message {
+  padding: 10px;
+  border-radius: 5px;
+  margin: 10px 0;
+  display: none;
+}
+
+.success {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.error {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.preview {
+  max-width: 200px;
+  max-height: 200px;
+  margin: 10px 0;
+}
+
+#progressContainer {
+  width: 40%;
+  margin: 0 0;
+  display: none;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 20px;
+  background: #04001b;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  box-shadow: 0 0 30px #9982f3;
+  background: #271379;
+  width: 100%;
+  transition: width 0.3s;
+}
+
+
+
 
 @keyframes fadeIn {
   from {
