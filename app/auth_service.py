@@ -7,7 +7,7 @@ from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
 from passlib.context import CryptContext
 import sqlite3
-from create_tables import users_base
+from creating_tables import create_tables
 
 pwd_context = CryptContext(schemes=["pbkdf2_sha256"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
@@ -46,29 +46,61 @@ def login(data):
     con = sqlite3.connect("static/database.db")
     cursor = con.cursor()
 
+    # error:
     hash_pass = cursor.execute(
         "SELECT password FROM users WHERE username = ?",
         (data.username,)
     ).fetchone()
-    cursor.close()
-
-    print(hash_pass)
 
     if not hash_pass:
         raise HTTPException(status_code=404, detail="User is not found")
 
     if not verify_password(data.password, hash_pass[0]):
         raise HTTPException(status_code=400, detail="Password does not valid")
+    
+    #search for token:
+    user_id = cursor.execute(
+        "SELECT id FROM users WHERE username = ?",
+        (data.username,)
+    ).fetchone()[0]
+
+    token_exists = cursor.execute(
+        "SELECT token FROM user_token WHERE user_id = ? AND expires_at > CURRENT_TIMESTAMP LIMIT 1",
+        (user_id,)
+    ).fetchone()
+
+    if token_exists:
+        response = TokenOut(access_token=token_exists[0])
+        return response
 
     token = create_access_token(data.username)
+
+    expires_at = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+
+    # create toke:
+    cursor.execute(
+        """
+            INSERT INTO user_token(user_id, token, expires_at)
+            VALUES (?, ?, ?);
+        """,
+        (user_id, token, expires_at)
+    )
+
+    con.commit()
+    con.close()
+
     response = TokenOut(access_token=token)
     return response
 
 def save_user(data):
+
+    # errors:
     data_information = data.model_dump()
     if any(" " in data_info for data_info in data_information.values()):
         raise HTTPException(status_code=400, detail="Information contains blank space")
-
+    if data.phone:
+        if data.phone.startswith('+7'):
+            data.phone = '8' + data.phone.removeprefix('+7')
     
     con = sqlite3.connect("static/database.db")
     cursor = con.cursor()
@@ -83,7 +115,7 @@ def save_user(data):
     if username:
         raise HTTPException(status_code=400, detail="Username is already used")
 
-
+    # add new use:
     cursor.execute(
         """INSERT INTO users (
             username, 
@@ -109,10 +141,31 @@ def save_user(data):
             data.card.replace(" ", "")
         )
     )
-
     con.commit()
     con.close()
+    # create toke:
+    # user_id = cursor.execute(
+    #         "SELECT id FROM users WHERE username = ?",
+    #         (data.username,)
+    #     ).fetchone()[0]
 
+    # token = create_access_token(data.username)
+
+    # expires_at = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+
+    # cursor.execute(
+    #     """
+    #         INSERT INTO user_token(user_id, token, expires_at)
+    #         VALUES (?, ?, ?);
+    #     """,
+    #     (user_id, token, expires_at)
+    # )
+
+    # con.commit()
+    # con.close()
+
+    # response = TokenOut(access_token=token)
+    # return response
 
 def users():
     result = []
