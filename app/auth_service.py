@@ -93,7 +93,6 @@ def login(data):
     return response
 
 def save_user(data):
-
     # errors:
     data_information = data.model_dump()
     if any(" " in data_info for data_info in data_information.values()):
@@ -196,3 +195,24 @@ def users():
             }
         )
     return result
+
+# def access_to_account(data):
+#     con = sqlite3.connect("static/database.db")
+#     cursor = con.cursor()
+
+#     user = cursor.execute(
+#             "SELECT id FROM users WHERE username = ?",
+#             (data.username,)
+#         ).fetchone()
+
+#     if not user:
+#         return False
+
+#     user_id = user[0]
+
+#     token_exists = cursor.execute(
+#             "SELECT token FROM user_token WHERE user_id = ? AND expires_at > CURRENT_TIMESTAMP LIMIT 1",
+#             (user_id,)
+#         ).fetchone()
+
+#     return token_exists is not None

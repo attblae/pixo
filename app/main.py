@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException, Request, File, UploadFile
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, JSONResponse
 from schemes import RegisterIn, SignIn
-from auth_service import login, save_user, users
+from auth_service import login, save_user, users, access_to_account
 from fastapi.exceptions import RequestValidationError
 from creating_tables import create_tables
 import sqlite3
@@ -67,12 +67,28 @@ def to_catalog():
 def to_about():
     return FileResponse("pages/about_us.html")
 
-@app.get("/account", tags=["lincs"])
-def to_about():
-    return FileResponse("pages/account.html")
+# @app.get("/account", tags=["lincs"])
+# def to_account():
+#     return FileResponse("pages/account.html")
+
+@app.get("/users", tags=["user create/sign_in"])
+def get_users():
+    return users()
 
 
 
+# @app.post("/account_access", tags=["user create/sign_in"])
+# def account(data: SignIn):
+#     has_access = access_to_account(data)
+    
+#     if has_access:
+#         return {"status": "ok"}
+#     else:
+#         raise HTTPException(
+#             status_code=400, 
+#             detail="Token has not found or has expired"
+#         )
+    
 @app.post("/login", tags=["user create/sign_in"])
 def route_login(data: SignIn):
     return login(data)
@@ -81,10 +97,6 @@ def route_login(data: SignIn):
 def register(data: RegisterIn):
     save_user(data)
     return {"status": "ok"}
-
-@app.get("/users", tags=["user create/sign_in"])
-def get_users():
-    return users()
 
 
 
