@@ -78,8 +78,8 @@ def get_users():
 
 
 # @app.post("/account_access", tags=["user create/sign_in"])
-# def account(data: SignIn):
-#     has_access = access_to_account(data)
+# def account():
+#     has_access = access_to_account()
     
 #     if has_access:
 #         return {"status": "ok"}

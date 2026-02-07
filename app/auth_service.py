@@ -182,27 +182,27 @@ def users():
     for user in users:
         result.append(
             {
-                user[0] : {
-                    "password": user[1],
-                    "name": user[2],
-                    "surname": user[3],
-                    "patronymic": user[4],
-                    "phone": user[5],
-                    "email": user[6],
-                    "passport_number": user[7],
-                    "card": user[8]
-                }
+                "username": user[0],
+                "password": user[1],
+                "name": user[2],
+                "surname": user[3],
+                "patronymic": user[4],
+                "phone": user[5],
+                "email": user[6],
+                "passport_number": user[7],
+                "card": user[8]
             }
         )
     return result
 
-# def access_to_account(data):
+# def access_to_account():
+#     data = users()
 #     con = sqlite3.connect("static/database.db")
 #     cursor = con.cursor()
-
+    
 #     user = cursor.execute(
 #             "SELECT id FROM users WHERE username = ?",
-#             (data.username,)
+#             (data["username"],)
 #         ).fetchone()
 
 #     if not user:
