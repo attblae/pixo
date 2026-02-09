@@ -26,6 +26,17 @@ def create_access_token(subject: str, expires_delta = None) -> str:
     return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
 
 
+"""
+принимает токен
+вернуть данные порльзщователя
+"""
+
+def get_user_from_token():
+    username = get_current_username()
+
+    con = sqlite3.connect("static/database.db")
+    cursor = con.cursor()
+
 def get_current_username(token: str = Depends(oauth2_scheme)) -> str:
     cred_exc = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
@@ -40,7 +51,6 @@ def get_current_username(token: str = Depends(oauth2_scheme)) -> str:
         return username
     except JWTError:
         raise cred_exc
-
 
 def login(data):
     con = sqlite3.connect("static/database.db")
@@ -71,8 +81,8 @@ def save_user(data):
     if any(" " in data_info for data_info in data_information.values()):
         raise HTTPException(status_code=400, detail="Information contains blank space")
     if data.phone:
-        if data.phone.startswith('+7'):
-            data.phone = '8' + data.phone.removeprefix('+7')
+        if data.phone.startswith("+7"):
+            data.phone = "8" + data.phone.removeprefix("+7")
     
     con = sqlite3.connect("static/database.db")
     cursor = con.cursor()
@@ -87,7 +97,7 @@ def save_user(data):
     if username:
         raise HTTPException(status_code=400, detail="Username is already used")
 
-    # add new use:
+    # add new user:
     cursor.execute(
         """INSERT INTO users (
             username, 
@@ -102,19 +112,23 @@ def save_user(data):
             ) VAlUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
         """,
         (
-            data.username.replace(" ", ""),
-            hash_password(data.password).replace(" ", ""),
-            data.name.replace(" ", ""),
-            data.surname.replace(" ", ""),
-            data.patronymic.replace(" ", ""),
-            data.phone.replace(" ", ""),
-            data.email.replace(" ", ""),
-            data.passport_number.replace(" ", ""),
-            data.card.replace(" ", "")
+            data.username,
+            hash_password(data.password),
+            data.name,
+            data.surname,
+            data.patronymic,
+            data.phone,
+            data.email,
+            data.passport_number,
+            data.card
         )
     )
     con.commit()
     con.close()
+
+    token = create_access_token(data.username)
+    response = TokenOut(access_token=token)
+    return response
 
 def users():
     result = []
