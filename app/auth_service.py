@@ -52,43 +52,16 @@ def login(data):
         (data.username,)
     ).fetchone()
 
+    con.commit()
+    con.close()
+
     if not hash_pass:
         raise HTTPException(status_code=404, detail="User is not found")
 
     if not verify_password(data.password, hash_pass[0]):
         raise HTTPException(status_code=400, detail="Password does not valid")
-    
-    #search for token:
-    user_id = cursor.execute(
-        "SELECT id FROM users WHERE username = ?",
-        (data.username,)
-    ).fetchone()[0]
-
-    token_exists = cursor.execute(
-        "SELECT token FROM user_token WHERE user_id = ? AND expires_at > CURRENT_TIMESTAMP LIMIT 1",
-        (user_id,)
-    ).fetchone()
-
-    if token_exists:
-        response = TokenOut(access_token=token_exists[0])
-        return response
 
     token = create_access_token(data.username)
-
-    expires_at = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-
-    # create toke:
-    cursor.execute(
-        """
-            INSERT INTO user_token(user_id, token, expires_at)
-            VALUES (?, ?, ?);
-        """,
-        (user_id, token, expires_at)
-    )
-
-    con.commit()
-    con.close()
-
     response = TokenOut(access_token=token)
     return response
 
@@ -142,29 +115,6 @@ def save_user(data):
     )
     con.commit()
     con.close()
-    # create toke:
-    # user_id = cursor.execute(
-    #         "SELECT id FROM users WHERE username = ?",
-    #         (data.username,)
-    #     ).fetchone()[0]
-
-    # token = create_access_token(data.username)
-
-    # expires_at = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-
-    # cursor.execute(
-    #     """
-    #         INSERT INTO user_token(user_id, token, expires_at)
-    #         VALUES (?, ?, ?);
-    #     """,
-    #     (user_id, token, expires_at)
-    # )
-
-    # con.commit()
-    # con.close()
-
-    # response = TokenOut(access_token=token)
-    # return response
 
 def users():
     result = []

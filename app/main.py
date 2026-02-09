@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException, Request, File, UploadFile
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, JSONResponse
 from schemes import RegisterIn, SignIn
-from auth_service import login, save_user, users, access_to_account
+from auth_service import login, save_user, users
 from fastapi.exceptions import RequestValidationError
 from creating_tables import create_tables
 import sqlite3

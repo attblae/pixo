@@ -15,15 +15,4 @@ def create_tables(con, cursor):
             );
         """
     )
-    cursor.execute(
-        """
-            CREATE TABLE if not exists user_token (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                token TEXT NOT NULL UNIQUE,
-                user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-                created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-                expires_at TIMESTAMP WITH TIME ZONE NOT NULL
-            );
-        """
-    )
     con.commit()
